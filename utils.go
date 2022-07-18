@@ -28,7 +28,9 @@ type decryptFlag struct {
 func main() {
 	utilFlags := parseFlags()
 	if utilFlags.generateKey {
-		e2g_utils.GenerateX25519Identity()
+		keyPair := e2g_utils.GenerateX25519Identity()
+		log.Printf("Public key: '%s'\n", keyPair.Public)
+		log.Printf("Private key: '%s'\n", keyPair.Private)
 	}
 	if len(utilFlags.toEncode) > 0 {
 		log.Printf("input '%s' is encoded to '%s'", utilFlags.toEncode, e2g_utils.Base64Encode(utilFlags.toEncode))
